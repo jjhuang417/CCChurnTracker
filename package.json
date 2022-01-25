@@ -1,0 +1,34 @@
+{
+  "name": "CCTracker",
+  "version": "1.0.0",
+  "description": "A small personal project for tracking credit cards and sign up bonuses. For any credit card churners, jumping around different bank apps to check your credit cards can be annoying, this app is aimed to keep track of all of the credit cards you own.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjhuang417/CCChurnTracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jjhuang417/CCChurnTracker/issues"
+  },
+  "homepage": "https://github.com/jjhuang417/CCChurnTracker#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "webpack": "^5.67.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "axios": "^0.25.0",
+    "express": "^4.17.2",
+    "react": "^17.0.2"
+  }
+}
