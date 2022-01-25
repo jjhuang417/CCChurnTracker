@@ -1,8 +1,13 @@
 import React from 'react';
+import Dropdown from './Dropdown.jsx';
 
 const App = () => {
   return (
-    <h1></h1>
+    <div>
+      <h1>Credit Card Tracker 💳</h1>
+      <Dropdown />
+      
+    </div>
   )
 }
 
