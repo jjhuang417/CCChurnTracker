@@ -1,16 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Dropdown = () => {
+const Dropdown = (props) => {
+
+  const [currentOption, setOption] = useState('');
+
+  const clickOption = (event) => {
+    event.preventDefault();
+    setOption(event.target.value);
+  }
+
+  const clickMe = (event) => {
+    event.preventDefault();
+    if (currentOption !== '--' || currentOption !== '') {
+      for(let i = 0; i < props.data.length; i++) {
+        if(props.data[i].name === currentOption) {
+          props.userCards.push(props.data[i]);
+          props.setUserCard(props.userCards);
+          console.log()
+          break;
+        }
+      }
+    }
+  }
+
+  // console.log(props.userCards);
+
   return (
     <div>
-      <select className='dropdown'>
-        <option>--</option>
-        <option>Chase Freedom Unlimited</option>
-        <option>Chase Flex</option>
-        <option>Chase Sapphire Preferred</option>
-        <option>Chase Sapphire Reserved</option>
+      <select onChange={clickOption} className='dropdown'>
+        {props.data.map((card) => {
+          return <option value={card.name} className='cardName'>{card.name}</option>
+        })}
       </select>
-      <button>Add</button>
+      <button onClick={clickMe}>Add</button>
     </div>
   )
 };
