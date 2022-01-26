@@ -3,8 +3,9 @@ import React from 'react';
 const Card = (props) => {
   return (
     <div>
-      <span>{props.id}</span>
-      <span>{props.name}</span>
+      <img src={props.eachCard.url}></img>
+      <span>{props.eachCard.name}</span>
+      <span>{props.eachCard.points}</span>
     </div>
   )
 }

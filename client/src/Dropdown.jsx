@@ -1,38 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const Dropdown = (props) => {
 
-  const [currentOption, setOption] = useState('');
+  // useRef hook here, added a ref attr on line 24 to signal which DOM element to look into, on line 16, the reference was used. The value in the DOM is saved in dropdownString.
+  const dropdownString = useRef();
 
   const clickOption = (event) => {
     event.preventDefault();
-    setOption(event.target.value);
+    props.setOption(event.target.value);
   }
 
-  const clickMe = (event) => {
+  const handleAdd = (event) => {
     event.preventDefault();
-    if (currentOption !== '--' || currentOption !== '') {
-      for(let i = 0; i < props.data.length; i++) {
-        if(props.data[i].name === currentOption) {
-          props.userCards.push(props.data[i]);
-          props.setUserCard(props.userCards);
-          console.log()
-          break;
-        }
-      }
-    }
+    props.addCard(dropdownString.current.value);
+    console.log(props.userCards);
   }
 
-  // console.log(props.userCards);
+  console.log(props.currentOption);
 
   return (
     <div>
-      <select onChange={clickOption} className='dropdown'>
-        {props.data.map((card) => {
-          return <option value={card.name} className='cardName'>{card.name}</option>
+      <select
+        ref={dropdownString}
+        className='dropdown'>
+        {props.data.map((card, idx) => {
+          return <option value={card.name} className='cardName' key={idx}>{card.name}</option>
         })}
       </select>
-      <button onClick={clickMe}>Add</button>
+      <button onClick={handleAdd}>+</button>
     </div>
   )
 };

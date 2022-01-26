@@ -12,8 +12,18 @@ const App = () => {
   // Data for user inputted cards
   const [userCards, setUserCard] = useState([]);
 
-  // Option state for the dropdown
-  // const [currentOption, setOption] = useState('');
+  // State that holds string for current credit card name
+  const [currentOption, setOption] = useState('Chase Sapphire Preferred');
+
+  const addCard = (cardName) => {
+    for (let i = 0; i < cardData.length; i++) {
+      if (cardData[i].name === cardName) {
+        setUserCard([...userCards, cardData[i]]);
+        console.log(userCards);
+        break;
+      }
+    }
+  }
 
   useEffect(() => {
     axios.get('/cc', )
@@ -23,20 +33,35 @@ const App = () => {
       .catch((error) => {
         console.log(error);
       })
-  }, [])
+  }, []);
 
-console.log(cardData);
-
-  return (
-    <div>
-      <h1>Credit Card Tracker 💳</h1>
-      <Dropdown
-        data={cardData}
-        userCards={userCards}
-        setUserCard={setUserCard}/>
-      <UserCardList userCards={userCards} />
-    </div>
-  )
-}
+  // Use conditional rendering here to counter asyn of state setting: don't render till cardData has length
+  if (cardData.length !== 0) {
+    var allthingstorender = (
+      <div>
+        <h1>Credit Card Tracker 💳</h1>
+        <Dropdown
+          data={cardData}
+          userCards={userCards}
+          setUserCard={setUserCard}
+          currentOption={currentOption}
+          setOption={setOption}
+          addCard={addCard}
+          />
+        <UserCardList
+          cardData={cardData}
+          userCards={userCards}
+          setUserCard={setUserCard}
+          currentOption={currentOption}/>
+      </div>
+    );
+  } else {
+    var allthingstorender = null;
+  } return (
+      <div>
+        {cardData.length !== 0 ? allthingstorender : <h1>Loading Card Info....</h1>}
+      </div>
+    )
+  }
 
 export default App;
