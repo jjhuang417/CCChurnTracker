@@ -10,8 +10,6 @@ const Card = (props) => {
   const inputOnChange = (event) => {
     event.preventDefault();
     setInput(event.target.value);
-    console.log('State: ', input);
-    console.log('Ref: ', spendInput.current.value);
   }
 
   const addSpend = (event) => {
@@ -24,6 +22,7 @@ const Card = (props) => {
         console.log('Spend update successfully');
         axios.get('/cc', )
           .then((response) => {
+            props.setData(response.data);
             setInput('');
           })
       })
@@ -32,26 +31,40 @@ const Card = (props) => {
       })
   }
 
+  let pre50 = (
+    <progress
+      class="progress is-warning is-small"
+      value={`${props.eachCard.current_spend}`}
+      max={`${props.eachCard.spend_threshold}`}>
+    </progress>
+  )
+
+  let post50 = (
+    <progress
+      class="progress is-success is-small"
+      value={`${props.eachCard.current_spend}`}
+      max={`${props.eachCard.spend_threshold}`}>
+    </progress>
+  )
+
   return (
     <div class="box">
-      <img className='cardImage' src={props.eachCard.url} width="140" height="50"></img>
       <div class="columns">
+        <img className='cardImage' src={props.eachCard.url} width="160" height="50"></img>
         <div class="column">
-          <span class="is-size-7 has-text-justified">{props.eachCard.name}</span>
+          <span class="is-size-6 has-text-justified has-text-info-dark">{props.eachCard.name}</span>
         </div>
-        <span class="column is-one-fifth">{props.eachCard.points} pts</span>
+        <span class="column is-one-fifth"><strong class='has-text-link'>Points:</strong> {props.eachCard.points} pts</span>
         <span class="column is-one-fifth">{props.eachCard.rewards}</span>
         <span class="column is-one-fifth">{props.eachCard.benefits}</span>
         <div class="column is-one-fifth">
-          <progress
-            class="progress is-link is-small"
-            value={`${props.eachCard.current_spend}`}
-            max={`${props.eachCard.spend_threshold}`}>
-          </progress>
+          <div>${props.eachCard.current_spend} / ${props.eachCard.spend_threshold}</div>
+            {(props.eachCard.current_spend/props.eachCard.spend_threshold) > 0.7 ? post50 : pre50}
           <div class="columns">
             <div class="column">
-              <input type='number' ref={spendInput} value={input} onChange={inputOnChange}></input>
-              <button onClick={addSpend}>$</button>
+              <input class='input is-small' type='number' ref={spendInput} value={input} onChange={inputOnChange}></input>
+              <button class='button is-primary is-small' onClick={addSpend}>$</button>
+              <button class='button is-danger is-small is-justify-content-start'>X</button>
             </div>
           </div>
         </div>
@@ -61,34 +74,3 @@ const Card = (props) => {
 }
 
 export default Card;
-
-{/* <div class="box">
-      <div class="columns">
-        <img class="column is-one-four-fifth" className='cardImage' src={props.eachCard.url} width="140" height="50"></img>
-        <div class="column is-one-fifth">
-          <span class="tag is-primary">{props.eachCard.name}</span>
-        </div>
-        <span class="column">{props.eachCard.points} pts</span>
-        <div class="column">
-          <progress
-            class="progress is-link is-small"
-            value={`${props.eachCard.current_spend}`}
-            max={`${props.eachCard.spend_threshold}`}>
-          </progress>
-        </div>
-      </div>
-    </div> */}
-
-{/* <div class="columns">
-  <div class="column">
-    <p class="bd-notification is-info">First column</p>
-    <div class="columns is-mobile">
-      <div class="column">
-        <p class="bd-notification is-info">First nested column</p>
-      </div>
-      <div class="column">
-        <p class="bd-notification is-info">Second nested column</p>
-      </div>
-    </div>
-  </div>
-</div> */}

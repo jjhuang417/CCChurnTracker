@@ -8,10 +8,7 @@ const Dropdown = (props) => {
   const handleAdd = (event) => {
     event.preventDefault();
     props.addCard(dropdownString.current.value);
-    console.log(props.userCards);
   }
-
-  console.log(dropdownString);
 
   return (
     <div>
@@ -19,10 +16,10 @@ const Dropdown = (props) => {
         ref={dropdownString}
         className='dropdown'>
         {props.data.map((card, idx) => {
-          return <option value={card.name} className='cardName' key={idx}>{card.name}</option>
+          return <option value={card.id}  className='cardName' key={idx}>{card.name}</option>
         })}
       </select>
-      <button class="button is-primary is-small" onClick={handleAdd}>+</button>
+      <button class="button is-warning is-small" onClick={handleAdd}>+</button>
     </div>
   )
 };

@@ -4,9 +4,10 @@ import Card from './Card.jsx';
 const UserCardList = (props) => {
   return (
     <div>
-      {props.userCards.map((eachCard) => {
+      {props.cardData.map((eachCard) => {
+        console.log('This is each card: ', eachCard);
         return (
-          <Card eachCard={eachCard} key={eachCard.id} setData={props.setData}/>
+          <Card eachCard={eachCard} key={eachCard.id} setData={props.setData} />
         )
       })}
     </div>

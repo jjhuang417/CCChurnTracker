@@ -9,17 +9,22 @@ const App = () => {
   // Data for existing card info
   const [cardData, setData] = useState([]);
 
-  // Data for user inputted cards
-  const [userCards, setUserCard] = useState([]);
-
   // Add a new card to the user array
-  const addCard = (cardName) => {
-    for (let i = 0; i < cardData.length; i++) {
-      if (cardData[i].name === cardName) {
-        setUserCard([...userCards, cardData[i]]);
-        break;
-      }
-    }
+  const addCard = (cardID) => {
+    axios.put('/cc/finished', {
+      'id': cardID
+    })
+      .then(() => {
+        console.log('Spend update successfully');
+        axios.get('/cc', )
+          .then((response) => {
+            console.log(response.data);
+            setData(response.data);
+          })
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   useEffect(() => {
@@ -39,15 +44,13 @@ const App = () => {
         <h1 class='is-size-3'>Credit Card Tracker 💳</h1>
         <Dropdown
           data={cardData}
-          userCards={userCards}
-          setUserCard={setUserCard}
           addCard={addCard}
           />
-           <UserCardList
-            cardData={cardData}
-            userCards={userCards}
-            setUserCard={setUserCard}
-            setData={setData}/>
+        <UserCardList
+          cardData={cardData.filter((card)=>{
+            return card.finished;
+          })}
+          setData={setData}/>
       </div>
     )
   } else {
