@@ -52,3 +52,15 @@ app.put('/cc/finished', (req, res) => {
     }
   })
 })
+
+app.put('/cc/delete', (req, res) => {
+  let SQLquery = 'UPDATE credit_card SET finished = false WHERE id = $1';
+  db.query(SQLquery, [req.body.id], (error, results) => {
+    if (error) {
+      res.status(404).send(error)
+      console.log(error);
+    } else {
+      res.status(201).send('Update successful!');
+    }
+  })
+})

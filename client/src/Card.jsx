@@ -31,6 +31,24 @@ const Card = (props) => {
       })
   }
 
+  const takeOutCard = (event) => {
+    event.preventDefault();
+    axios.put('/cc/delete', {
+      'id': props.eachCard.id
+    })
+      .then(() => {
+        console.log('Card taken out successfully');
+        axios.get('/cc', )
+          .then((response) => {
+            props.setData(response.data);
+            setInput('');
+          })
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
   let pre50 = (
     <progress
       class="progress is-warning is-small"
@@ -64,7 +82,7 @@ const Card = (props) => {
             <div class="column">
               <input class='input is-small' type='number' ref={spendInput} value={input} onChange={inputOnChange}></input>
               <button class='button is-primary is-small' onClick={addSpend}>$</button>
-              <button class='button is-danger is-small is-justify-content-start'>X</button>
+              <button class='button is-danger is-small is-justify-content-start' onClick={takeOutCard}>X</button>
             </div>
           </div>
         </div>
