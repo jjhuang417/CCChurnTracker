@@ -53,6 +53,7 @@ const Card = (props) => {
 
   let pre70 = (
     <progress
+      id='progressBar'
       class="progress is-warning is-small"
       value={`${card.current_spend}`}
       max={`${card.spend_threshold}`}>
@@ -61,6 +62,7 @@ const Card = (props) => {
 
   let post70 = (
     <progress
+      id='progressBar'
       class="progress is-success is-small"
       value={`${card.current_spend}`}
       max={`${card.spend_threshold}`}>
