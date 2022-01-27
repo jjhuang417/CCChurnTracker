@@ -12,14 +12,11 @@ const App = () => {
   // Data for user inputted cards
   const [userCards, setUserCard] = useState([]);
 
-  // State that holds string for current credit card name
-  const [currentOption, setOption] = useState('Chase Sapphire Preferred');
-
+  // Add a new card to the user array
   const addCard = (cardName) => {
     for (let i = 0; i < cardData.length; i++) {
       if (cardData[i].name === cardName) {
         setUserCard([...userCards, cardData[i]]);
-        console.log(userCards);
         break;
       }
     }
@@ -39,29 +36,29 @@ const App = () => {
   if (cardData.length !== 0) {
     var allthingstorender = (
       <div>
-        <h1>Credit Card Tracker 💳</h1>
+        <h1 class='is-size-3'>Credit Card Tracker 💳</h1>
         <Dropdown
           data={cardData}
           userCards={userCards}
           setUserCard={setUserCard}
-          currentOption={currentOption}
-          setOption={setOption}
           addCard={addCard}
           />
-        <UserCardList
-          cardData={cardData}
-          userCards={userCards}
-          setUserCard={setUserCard}
-          currentOption={currentOption}/>
+           <UserCardList
+            cardData={cardData}
+            userCards={userCards}
+            setUserCard={setUserCard}
+            setData={setData}/>
       </div>
-    );
+    )
   } else {
     var allthingstorender = null;
-  } return (
+  };
+
+  return (
       <div>
         {cardData.length !== 0 ? allthingstorender : <h1>Loading Card Info....</h1>}
       </div>
-    )
-  }
+  )
+}
 
 export default App;

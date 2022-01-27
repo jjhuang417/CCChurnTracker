@@ -13,8 +13,11 @@ CREATE TABLE credit_card (
  finished BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-INSERT INTO credit_card (name,  bank, current_spend, spend_threshold, spend_duration, points, benefits, rewards, annual_fee, url)
-VALUES ('Chase Sapphire Preferred', 'Chase', 0, 4000, 3, 60000, 'Earn 3X Points on Dinig', 'Get 25% more value when redeemed for travel', 95, 'https://ibb.co/PMLp16F');
+INSERT INTO credit_card (name,  bank, spend_threshold, spend_duration, points, benefits, rewards, annual_fee, url)
+VALUES ('Chase Sapphire Preferred', 'Chase', 4000, 3, 60000, 'Earn 3X Points on Dinig', 'Get 25% more value when redeemed for travel', 95, 'https://ibb.co/PMLp16F');
 
-INSERT INTO credit_card (name,  bank, current_spend, spend_threshold, spend_duration, points, benefits, rewards, annual_fee, url)
-VALUES ('Chase Sapphire Reserve', 'Chase', 0, 4000, 3, 50000, 'Earn 3X Points on Dining', 'Get 50% more value when redeemed for travel', 550, 'https://i.ibb.co/7RxMKPJ/Screen-Shot-2022-01-25-at-9-18-51-PM.png');
+INSERT INTO credit_card (name,  bank, spend_threshold, spend_duration, points, benefits, rewards, annual_fee, url)
+VALUES ('Chase Sapphire Reserve', 'Chase', 4000, 3, 50000, 'Earn 3X Points on Dining', 'Get 50% more value when redeemed for travel', 550, 'https://i.ibb.co/7RxMKPJ/Screen-Shot-2022-01-25-at-9-18-51-PM.png');
+
+INSERT INTO credit_card (name,  bank, spend_threshold, spend_duration, points, benefits, rewards, annual_fee, url)
+VALUES ('AMEX Platinum Card', 'American Express', 6000, 6, 150000, 'Earn 5X Points on Flights', '$200 Uber Credit & $200 Airline Credit', 695, 'https://i.ibb.co/3YTTKJw/Screen-Shot-2022-01-26-at-5-30-28-PM.png');

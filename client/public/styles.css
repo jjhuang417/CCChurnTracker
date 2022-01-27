@@ -1,0 +1,14 @@
+.appTitle {
+  color: black;
+}
+
+.cardImage {
+  width: 14vw;
+  height: 12vh;
+}
+
+/* Progress Bar */
+#progressContainer {
+  width: 300px;
+  height: 150px;
+}

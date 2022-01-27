@@ -27,4 +27,17 @@ app.get('/cc', (req, res) => {
       res.status(200).send(results.rows);
     }
   })
+});
+
+app.put('/cc', (req, res) => {
+  let amount = req.body;
+  let SQLquery = 'UPDATE credit_card SET current_spend = current_spend + $1 WHERE id = $2';
+  db.query(SQLquery, [req.body.spend, req.body.id], (error, results) => {
+    if (error) {
+      res.status(404).send(error)
+      console.log(error);
+    } else {
+      res.status(201).send('Update successful!');
+    }
+  })
 })
