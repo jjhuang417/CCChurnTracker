@@ -41,13 +41,14 @@ const App = () => {
   if (cardData.length !== 0) {
     var allthingstorender = (
       <div>
-        <section class="hero is-info">
+        <section class="hero is-info is-small">
           <div class="hero-body">
             <p class="title has-text-centered">
               Credit Card Churning Tracker
             </p>
           </div>
         </section>
+        <div class='has-text-centered'>-</div>
         <Dropdown
           data={cardData}
           addCard={addCard}

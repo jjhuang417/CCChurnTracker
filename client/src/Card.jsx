@@ -68,7 +68,7 @@ const Card = (props) => {
   )
 
   return (
-    <div class="box">
+    <div class="box" id='creditCard'>
       <div class="columns is-vcentered">
         <div lass="column">
           <a href={card.page_link} id='cardImage' target='_blank'><img class="column" className='cardImage' src={card.url} width="220" height="50"></img></a>
