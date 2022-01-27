@@ -3,6 +3,8 @@ import axios from 'axios';
 
 const Card = (props) => {
 
+  const card = props.eachCard;
+
   // Hanlde input
   const [input, setInput] = useState('')
   const spendInput = useRef();
@@ -15,7 +17,7 @@ const Card = (props) => {
   const addSpend = (event) => {
     event.preventDefault();
     axios.put('/cc', {
-      'id': props.eachCard.id,
+      'id': card.id,
       'spend': input
     })
       .then(() => {
@@ -34,7 +36,7 @@ const Card = (props) => {
   const takeOutCard = (event) => {
     event.preventDefault();
     axios.put('/cc/delete', {
-      'id': props.eachCard.id
+      'id': card.id
     })
       .then(() => {
         console.log('Card taken out successfully');
@@ -49,38 +51,50 @@ const Card = (props) => {
       })
   }
 
-  let pre50 = (
+  let pre70 = (
     <progress
       class="progress is-warning is-small"
-      value={`${props.eachCard.current_spend}`}
-      max={`${props.eachCard.spend_threshold}`}>
+      value={`${card.current_spend}`}
+      max={`${card.spend_threshold}`}>
     </progress>
   )
 
-  let post50 = (
+  let post70 = (
     <progress
       class="progress is-success is-small"
-      value={`${props.eachCard.current_spend}`}
-      max={`${props.eachCard.spend_threshold}`}>
+      value={`${card.current_spend}`}
+      max={`${card.spend_threshold}`}>
     </progress>
   )
 
   return (
     <div class="box">
-      <div class="columns">
-        <img className='cardImage' src={props.eachCard.url} width="160" height="50"></img>
-        <div class="column">
-          <span class="is-size-6 has-text-justified has-text-info-dark">{props.eachCard.name}</span>
+      <div class="columns is-vcentered">
+        <div lass="column">
+          <a href={card.page_link} id='cardImage' target='_blank'><img class="column" className='cardImage' src={card.url} width="220" height="50"></img></a>
+          <div class="is-size-6 has-text-centered has-text-info">{card.name}</div>
         </div>
-        <span class="column is-one-fifth"><strong class='has-text-link'>Points:</strong> {props.eachCard.points} pts</span>
-        <span class="column is-one-fifth">{props.eachCard.rewards}</span>
-        <span class="column is-one-fifth">{props.eachCard.benefits}</span>
-        <div class="column is-one-fifth">
-          <div>${props.eachCard.current_spend} / ${props.eachCard.spend_threshold}</div>
-            {(props.eachCard.current_spend/props.eachCard.spend_threshold) > 0.7 ? post50 : pre50}
+        <div class="column">
+          <div><strong>Bonus:</strong> {card.points} pts</div>
+          <div><strong>Annual Fee:</strong> ${card.annual_fee}</div>
+        </div>
+        <div class='column'>
+          <div>Spend ${card.spend_threshold} in {card.spend_duration} month to get sign-up bonus.</div>
+        </div>
+        <div class="column">
+          <div><strong>Rewards:</strong> {card.rewards}</div>
+        </div>
+        <div class="column">
+          <div><strong>Benefits:</strong> {card.benefits}</div>
+        </div>
+          <div class="column is-one-fifth">
+          <div>${card.current_spend} / ${card.spend_threshold}</div>
+            {(card.current_spend/card.spend_threshold) > 0.7 ? post70 : pre70}
           <div class="columns">
             <div class="column">
               <input class='input is-small' type='number' ref={spendInput} value={input} onChange={inputOnChange}></input>
+            </div>
+            <div class="column">
               <button class='button is-primary is-small' onClick={addSpend}>$</button>
               <button class='button is-danger is-small is-justify-content-start' onClick={takeOutCard}>X</button>
             </div>

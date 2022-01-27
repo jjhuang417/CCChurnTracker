@@ -41,7 +41,13 @@ const App = () => {
   if (cardData.length !== 0) {
     var allthingstorender = (
       <div>
-        <h1 class='is-size-3'>Credit Card Tracker 💳</h1>
+        <section class="hero is-info">
+          <div class="hero-body">
+            <p class="title has-text-centered">
+              Credit Card Churning Tracker
+            </p>
+          </div>
+        </section>
         <Dropdown
           data={cardData}
           addCard={addCard}

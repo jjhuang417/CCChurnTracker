@@ -11,15 +11,21 @@ const Dropdown = (props) => {
   }
 
   return (
-    <div>
-      <select
-        ref={dropdownString}
-        className='dropdown'>
-        {props.data.map((card, idx) => {
-          return <option value={card.id}  className='cardName' key={idx}>{card.name}</option>
-        })}
-      </select>
-      <button class="button is-warning is-small" onClick={handleAdd}>+</button>
+    <div class="columns">
+      <div class="column is-one-fifth">
+        <div class="select">
+          <select
+            ref={dropdownString}
+            className='dropdown'>
+            {props.data.map((card, idx) => {
+              return <option value={card.id}  className='cardName' key={idx}>{card.name}</option>
+            })}
+          </select>
+        </div>
+      </div>
+      <div class="column">
+        <button class="button is-link" onClick={handleAdd}>+</button>
+      </div>
     </div>
   )
 };

@@ -18,7 +18,7 @@ app.listen(port, () => {
 
 // Request Handling
 app.get('/cc', (req, res) => {
-  let SQLquery = 'SELECT * FROM credit_card;';
+  let SQLquery = 'SELECT * FROM credit_card ORDER BY id;';
   db.query(SQLquery, (error, results) => {
     if (error) {
       res.status(404).send(error);
