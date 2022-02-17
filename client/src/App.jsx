@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Components
+// ************
+// Imported components
+// ************
 import Dropdown from './Dropdown.jsx';
 import UserCardList from './UserCardList.jsx';
 
 const App = () => {
+  // ************
   // Data for existing card info
+  // ************
   const [cardData, setData] = useState([]);
 
+  // ************
   // Add a new card to the user array
+  // ************
   const addCard = (cardID) => {
     axios.put('/cc/finished', {
       'id': cardID
@@ -37,7 +43,9 @@ const App = () => {
       })
   }, []);
 
+  // ************
   // Use conditional rendering here to counter asyn of state setting: don't render till cardData has length
+  // ************
   if (cardData.length !== 0) {
     var allthingstorender = (
       <div>

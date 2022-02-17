@@ -5,7 +5,9 @@ const Card = (props) => {
 
   const card = props.eachCard;
 
+  // ************
   // Hanlde input
+  // ************
   const [input, setInput] = useState('')
   const spendInput = useRef();
 
@@ -14,6 +16,9 @@ const Card = (props) => {
     setInput(event.target.value);
   }
 
+  // ************
+  // CRUD operation for credit card
+  // ************
   const addSpend = (event) => {
     event.preventDefault();
     axios.put('/cc', {
@@ -51,6 +56,9 @@ const Card = (props) => {
       })
   }
 
+  // ************
+  // Progress bar components
+  // ************
   let pre70 = (
     <progress
       id='progressBar'
