@@ -6,8 +6,15 @@ This is a small personal project that helps users track credit cards, spending p
 **What is credit card churning:**
 - The process involves applying for a credit card, getting approved, meeting a minimum spend within a set amount of time, earning a large welcome bonus, and canceling the card before the next annual fee is due.
 
-**How do I use this?**
+**Why did I create this?**
 - I created this app because checking credit card progress across multiple banking apps can be cumbersome. This would be a central hub for all your cards in one glance.
+
+**How do I use this?**
+1. Install dependencies: `npm install`
+2. Substitute username with your own username and dbname with your own database name, the run `pg_dump -U username dbname > schema.sql` to Load the schema file into your postgreSQL database.
+3. Run `npm run server` to start up the node server.
+4. Run `npm run build` to run webpack.
+5. Run http://localhost:3000/ in the browser.
 
 ## Demo
 
