@@ -9,8 +9,6 @@ This is a small personal project that helps users track credit cards, spending p
 **How do I use this?**
 - I created this app because checking credit card progress across multiple banking apps can be cumbersome. This would be a central hub for all your cards in one glance.
 
-This project was made in 2 days for a course, there are much to be added and polished. This project is currently local and not yet deployed.
-
 ## Demo
 
 <a href='https://youtu.be/aE5JUTjqLDc'>Full Demo on Youtube</a>
