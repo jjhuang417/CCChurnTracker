@@ -26,6 +26,7 @@ Adding Spend Towards Threshold
 - Express.js
 - React.js
 - Node.js
+- Bulma CSS
 
 ## Future Roadmap
 1. Add a feature to show how many days are left on the spending window
